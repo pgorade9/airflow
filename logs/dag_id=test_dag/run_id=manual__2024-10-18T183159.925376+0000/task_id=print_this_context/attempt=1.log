@@ -1,0 +1,105 @@
+[2024-10-18T18:32:05.691+0000] {local_task_job_runner.py:123} INFO - ::group::Pre task execution logs
+[2024-10-18T18:32:05.740+0000] {taskinstance.py:2612} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: test_dag.print_this_context manual__2024-10-18T18:31:59.925376+00:00 [queued]>
+[2024-10-18T18:32:05.760+0000] {taskinstance.py:2612} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: test_dag.print_this_context manual__2024-10-18T18:31:59.925376+00:00 [queued]>
+[2024-10-18T18:32:05.776+0000] {taskinstance.py:2865} INFO - Starting attempt 1 of 1
+[2024-10-18T18:32:05.810+0000] {taskinstance.py:2888} INFO - Executing <Task(PythonOperator): print_this_context> on 2024-10-18 18:31:59.925376+00:00
+[2024-10-18T18:32:05.826+0000] {warnings.py:112} WARNING - /home/***/.local/lib/python3.12/site-packages/***/task/task_runner/standard_task_runner.py:70: DeprecationWarning: This process (pid=960) is multi-threaded, use of fork() may lead to deadlocks in the child.
+  pid = os.fork()
+
+[2024-10-18T18:32:05.831+0000] {standard_task_runner.py:72} INFO - Started process 962 to run task
+[2024-10-18T18:32:05.831+0000] {standard_task_runner.py:104} INFO - Running: ['***', 'tasks', 'run', 'test_dag', 'print_this_context', 'manual__2024-10-18T18:31:59.925376+00:00', '--job-id', '10', '--raw', '--subdir', 'DAGS_FOLDER/test_dag.py', '--cfg-path', '/tmp/tmpijyt5kga']
+[2024-10-18T18:32:05.838+0000] {standard_task_runner.py:105} INFO - Job 10: Subtask print_this_context
+[2024-10-18T18:32:05.953+0000] {task_command.py:467} INFO - Running <TaskInstance: test_dag.print_this_context manual__2024-10-18T18:31:59.925376+00:00 [running]> on host d004819e31a5
+[2024-10-18T18:32:06.135+0000] {taskinstance.py:3131} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='***' AIRFLOW_CTX_DAG_ID='test_dag' AIRFLOW_CTX_TASK_ID='print_this_context' AIRFLOW_CTX_EXECUTION_DATE='2024-10-18T18:31:59.925376+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='manual__2024-10-18T18:31:59.925376+00:00'
+[2024-10-18T18:32:06.141+0000] {logging_mixin.py:190} INFO - Task instance is in running state
+[2024-10-18T18:32:06.145+0000] {logging_mixin.py:190} INFO -  Previous state of the Task instance: queued
+[2024-10-18T18:32:06.150+0000] {logging_mixin.py:190} INFO - Current task name:print_this_context state:running start_date:2024-10-18 18:32:05.743493+00:00
+[2024-10-18T18:32:06.154+0000] {logging_mixin.py:190} INFO - Dag name:test_dag and current dag run status:running
+[2024-10-18T18:32:06.158+0000] {taskinstance.py:731} INFO - ::endgroup::
+[2024-10-18T18:32:06.162+0000] {taskinstance.py:3310} ERROR - Task failed with exception
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/taskinstance.py", line 767, in _execute_task
+    result = _execute_callable(context=context, **execute_callable_kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/taskinstance.py", line 733, in _execute_callable
+    return ExecutionCallableRunner(
+           ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/utils/operator_helpers.py", line 252, in run
+    return self.func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/baseoperator.py", line 406, in wrapper
+    return func(self, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/operators/python.py", line 235, in execute
+    self.op_kwargs = self.determine_kwargs(context)
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/operators/python.py", line 247, in determine_kwargs
+    return KeywordParameters.determine(self.python_callable, self.op_args, context).unpacking()
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/utils/operator_helpers.py", line 168, in determine
+    raise ValueError(f"The key {name!r} in args is a part of kwargs and therefore reserved.")
+ValueError: The key 'ds' in args is a part of kwargs and therefore reserved.
+[2024-10-18T18:32:06.192+0000] {logging_mixin.py:190} INFO - Task instance in failure state
+[2024-10-18T18:32:06.201+0000] {logging_mixin.py:190} INFO - Task start:2024-10-18 18:32:05.743493+00:00 end:2024-10-18 18:32:06.188607+00:00 duration:0.445114
+[2024-10-18T18:32:06.209+0000] {logging_mixin.py:190} INFO - Task:<Task(PythonOperator): print_this_context> dag:<DAG: test_dag> dagrun:<DagRun test_dag @ 2024-10-18 18:31:59.925376+00:00: manual__2024-10-18T18:31:59.925376+00:00, state:running, queued_at: 2024-10-18 18:31:59.953545+00:00. externally triggered: True>
+[2024-10-18T18:32:06.220+0000] {logging_mixin.py:190} INFO - Failure caused by The key 'ds' in args is a part of kwargs and therefore reserved.
+[2024-10-18T18:32:06.228+0000] {taskinstance.py:1225} INFO - Marking task as FAILED. dag_id=test_dag, task_id=print_this_context, run_id=manual__2024-10-18T18:31:59.925376+00:00, execution_date=20241018T183159, start_date=20241018T183205, end_date=20241018T183206
+[2024-10-18T18:32:06.289+0000] {taskinstance.py:340} INFO - ::group::Post task execution logs
+[2024-10-18T18:32:06.301+0000] {standard_task_runner.py:124} ERROR - Failed to execute job 10 for task print_this_context (The key 'ds' in args is a part of kwargs and therefore reserved.; 962)
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/task/task_runner/standard_task_runner.py", line 117, in _start_by_fork
+    ret = args.func(args, dag=self.dag)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/cli/cli_config.py", line 49, in command
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/utils/cli.py", line 115, in wrapper
+    return f(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/cli/commands/task_command.py", line 483, in task_run
+    task_return_code = _run_task_by_selected_method(args, _dag, ti)
+                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/cli/commands/task_command.py", line 256, in _run_task_by_selected_method
+    return _run_raw_task(args, ti)
+           ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/cli/commands/task_command.py", line 341, in _run_raw_task
+    return ti._run_raw_task(
+           ^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/utils/session.py", line 97, in wrapper
+    return func(*args, session=session, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/taskinstance.py", line 3004, in _run_raw_task
+    return _run_raw_task(
+           ^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/taskinstance.py", line 273, in _run_raw_task
+    TaskInstance._execute_task_with_callbacks(
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/taskinstance.py", line 3158, in _execute_task_with_callbacks
+    result = self._execute_task(context, task_orig)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/taskinstance.py", line 3182, in _execute_task
+    return _execute_task(self, context, task_orig)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/taskinstance.py", line 767, in _execute_task
+    result = _execute_callable(context=context, **execute_callable_kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/taskinstance.py", line 733, in _execute_callable
+    return ExecutionCallableRunner(
+           ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/utils/operator_helpers.py", line 252, in run
+    return self.func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/baseoperator.py", line 406, in wrapper
+    return func(self, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/operators/python.py", line 235, in execute
+    self.op_kwargs = self.determine_kwargs(context)
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/operators/python.py", line 247, in determine_kwargs
+    return KeywordParameters.determine(self.python_callable, self.op_args, context).unpacking()
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/utils/operator_helpers.py", line 168, in determine
+    raise ValueError(f"The key {name!r} in args is a part of kwargs and therefore reserved.")
+ValueError: The key 'ds' in args is a part of kwargs and therefore reserved.
+[2024-10-18T18:32:06.375+0000] {local_task_job_runner.py:266} INFO - Task exited with return code 1
+[2024-10-18T18:32:06.433+0000] {taskinstance.py:3900} INFO - 0 downstream tasks scheduled from follow-on schedule check
+[2024-10-18T18:32:06.454+0000] {local_task_job_runner.py:245} INFO - ::endgroup::
