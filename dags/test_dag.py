@@ -2,6 +2,7 @@ from airflow import DAG
 from airflow.operators.python import PythonOperator
 from pprint import pprint
 
+# This DAG is a demo of using PythonOperator
 dag = DAG("test_dag")
 
 
